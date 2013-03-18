@@ -21,11 +21,12 @@ public:
     virtual ~ConnectionImplQT(){}
     virtual RetType getAnsver(int length);
     virtual int sendCommand(const QByteArray &);
+
 private:
     virtual int connect_();
     QTcpSocket sock_;
-    QMutex mtx_;
     QMutex mtxInputBuffer_;
+    QMutex mtx_;
     QByteArray InputBfr_;
 public slots:
     void slotReadyRead();

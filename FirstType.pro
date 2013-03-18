@@ -44,15 +44,14 @@ HEADERS  += mainwindow.h \
     connectionImplBoost.h \
     connectionImpl.h \
     connectionCallback.h \
-    chanwidgetmanometer.h
+    chanwidgetmanometer.h \
+    wrapped.h
 
 FORMS    += mainwindow.ui
 
-
-win32:!unix: LIBS += -llibboost_system-vc100-mt-gd-1_51
-
 QMAKE_CXXFLAGS += -std=c++0x
-
 
 unix:!macx:!symbian: LIBS += -lboost_system
 QT += network
+
+win32: LIBS += -llibboost_system-vc100-mt-gd-1_51
