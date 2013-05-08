@@ -36,7 +36,7 @@ void ChanWidgetLED::setColor(QColor i)
 }
 void ChanWidgetLED::showVal(float fVal)
 {
-   setChecked(fVal>50);
+   setChecked(fVal>0);
 }
 
 void ChanWidgetLED::paintEvent(QPaintEvent * /* event*/ )

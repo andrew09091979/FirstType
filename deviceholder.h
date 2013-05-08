@@ -14,6 +14,7 @@
 #include "chanwidgetcreator.h"
 #include "chanwidget.h"
 #include "chanwidgetlcd.h"
+#include "chanwidgetled.h"
 #include "protocol.h"
 template <
     template <
@@ -54,8 +55,8 @@ template <
 >
 DeviceHolder<Device, Prtcl, ConnectionImpl, Type>::DeviceHolder()
 {
-    devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLCD>);
-//  devWnd_ = new DevWnd(new ChanWidgetCreator<Led>);
+//    devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLCD>);
+  devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLED>);
     syncronizer_ = new Syncronizer(this);
     dev_.reset(new Device<Prtcl, ConnectionImpl, Type>(this));
 }

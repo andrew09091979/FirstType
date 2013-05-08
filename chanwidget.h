@@ -19,7 +19,7 @@ public:
 
 protected:
    void repaintBackground();
-   virtual void paintBackground(QPainter & painer) = 0;
+   virtual void paintBackground(QPainter & painter) = 0;
 
 protected:
     std::auto_ptr<QPixmap> m_pixmap;

@@ -108,7 +108,7 @@ void Protocol10007<ConnectionImpl, DataType>::ansverReceived(qint64 length) cons
     qint8 dummyBytes = 0;
     QByteArray tmpBfr;
     tmp = this->getWaitingFor();
-    //qDebug() << "Protocol10007::ansverReceived length = " << length << " waiting for = " << tmp;
+//  qDebug() << "Protocol10007::ansverReceived length = " << length << " waiting for = " << tmp;
     bfr += *pImpl_->getAnsver(length).get();
     size = bfr.size();
     if (size > 0)
@@ -129,14 +129,14 @@ void Protocol10007<ConnectionImpl, DataType>::ansverReceived(qint64 length) cons
         {
             addr = getAddress(bfr);
             dataSize = getDataSize(bfr);
-            //qDebug() << "Protocol10007::ansverReceived addr = " << addr << " size = " << size << "dataSize = "<< dataSize;
+//          qDebug() << "Protocol10007::ansverReceived addr = " << addr << " size = " << size << "dataSize = "<< dataSize;
             length -= dummyBytes;
-           //qDebug() << "Protocol10007::ansverReceived bfr = " << bfr.toHex();
+//          qDebug() << "Protocol10007::ansverReceived bfr = " << bfr.toHex();
             if (tmp - length > 0)
                 setWaitingFor(tmp - length);
             else
                 setWaitingFor(0);
-            //qDebug() << "Protocol10007::ansverReceived tmp - length = " << tmp - length;
+//          qDebug() << "Protocol10007::ansverReceived tmp - length = " << tmp - length;
             if (size >= dataSize+HEADER_LEN+TAIL_LEN)
             {
                 ret.reset(new ValuesBfrType());
@@ -151,7 +151,7 @@ void Protocol10007<ConnectionImpl, DataType>::ansverReceived(qint64 length) cons
                         ++pos;
                     }
                     ret->push_back(val);
-                    //qDebug() << "val = " << val<<" pos = " << pos << " tmpBfr = " << tmpBfr.toHex() ;
+//                  qDebug() << "val = " << val<<" pos = " << pos << " tmpBfr = " << tmpBfr.toHex() ;
                     tmpBfr.clear();
                 }
                 Protocol<DataType>::clb_->actualValuesReceived(ret);

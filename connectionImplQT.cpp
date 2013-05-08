@@ -1,3 +1,4 @@
+
 #include "connectionImplQT.h"
 
 ConnectionImplQT::ConnectionImplQT(const std::string &ip, unsigned short port, const ConnectionCallback *c)
@@ -48,6 +49,7 @@ ConnectionImplQT::RetType ConnectionImplQT::getAnsver(int length)
     }
     else
     {
+
     }
     return res;
 }
