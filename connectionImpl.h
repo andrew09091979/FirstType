@@ -14,8 +14,8 @@ class ConnectionImpl
 {
 public:
     typedef float T;
-    //typedef QByteArray BufferType;
-    typedef  WrappedContainer<QByteArray, ThreadSafetyStrategy<QMutex, QMutexLocker>, int, char> BufferType;
+    typedef QByteArray BufferType;
+    //typedef  WrappedContainer<QByteArray, ThreadSafetyStrategy<QMutex, QMutexLocker>, int, char> BufferType;
     typedef std::auto_ptr <BufferType> RetType;
     ConnectionImpl(const std::string & ip, unsigned short port, const ConnectionCallback* c)
         :ip_(ip), port_(port), clb_(c), bfr_(50,0),isConnected(false){}

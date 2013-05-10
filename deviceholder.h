@@ -55,8 +55,8 @@ template <
 >
 DeviceHolder<Device, Prtcl, ConnectionImpl, Type>::DeviceHolder()
 {
-//    devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLCD>);
-  devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLED>);
+    devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLCD>);
+  //devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLED>);
     syncronizer_ = new Syncronizer(this);
     dev_.reset(new Device<Prtcl, ConnectionImpl, Type>(this));
 }

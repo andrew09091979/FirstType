@@ -7,6 +7,7 @@
 #include "deviceholder.h"
 #include "device.h"
 #include "connectionImplQT.h"
+#include "connectionImplRandomStub.h"
 namespace Ui {
 class MainWindow;
 }
