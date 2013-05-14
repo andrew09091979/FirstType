@@ -9,7 +9,7 @@ class ChanWidgetLED : public ChanWidget
      Q_OBJECT
      Q_PROPERTY( bool checked READ isChecked 	WRITE setChecked)
      Q_PROPERTY( QColor color READ color 	WRITE setColor)
-
+     int size;
 public:
 
      ChanWidgetLED(QWidget *parent = 0);

@@ -1,6 +1,7 @@
 #ifndef CHANWIDGETCREATOR_H
 #define CHANWIDGETCREATOR_H
 #include <QWidget>
+
 class WidgetCreator
 {
 public:

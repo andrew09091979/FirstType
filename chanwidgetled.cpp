@@ -1,11 +1,11 @@
 #include "chanwidgetled.h"
 #include <QtGui>
 #include "chanwidgetled.h"
-ChanWidgetLED::ChanWidgetLED(QWidget * parent):ChanWidget(parent)
+ChanWidgetLED::ChanWidgetLED(QWidget * parent):ChanWidget(parent),size(50)
 {
   m_checked = true;
   m_color = Qt::red;
-  resize(330,330);
+  resize(size,size);
 }
 
 
@@ -63,7 +63,7 @@ void ChanWidgetLED::paintEvent(QPaintEvent * /* event*/ )
     pen.setColor(c);
     pen.setWidthF(3.0);
 
-    painter.drawEllipse(-149,-149,299,299);
+    painter.drawEllipse(-(size-size/10)/2,-(size-size/10)/2,(size-size/10),(size-size/10));
     painter.end();
 
     drawBackground(); // to maluje na tym co dotychczas to co jest w bitmapce
@@ -73,7 +73,8 @@ void ChanWidgetLED::paintBackground(QPainter & painter)
 {
   initCoordinateSystem(painter);
   painter.setPen(Qt::NoPen);
-  QRadialGradient shine(QPointF(-40.0,-40.0),120.0,QPointF(-40,-40));
+  QRadialGradient shine(QPointF(-(size-size/10)/7.5,-(size-size/10)/7.5),(size-size/10)/2.5,
+                        QPointF(-(size-size/10)/7.5,-(size-size/10)/7.5));
   QColor white1(255,255,255,200);
   QColor white0(255,255,255,0);
 
@@ -81,7 +82,7 @@ void ChanWidgetLED::paintBackground(QPainter & painter)
   shine.setColorAt(1.0,white0);
 
   painter.setBrush(shine);
-  painter.drawEllipse(-147,-147,297,297);
+  painter.drawEllipse(-(size-size/10)/2,-(size-size/10)/2,(size-size/10),(size-size/10));
 
 }
 void ChanWidgetLED::show()
@@ -91,13 +92,14 @@ void ChanWidgetLED::show()
 
 QSize ChanWidgetLED::sizeHint() const
 {
-    return QWidget::sizeHint();
+    QSize s = QSize(size,size);
+    return s;//QWidget::sizeHint();
 }
 void ChanWidgetLED::initCoordinateSystem(QPainter & painter)
 {
   int side = qMin(width(), height());
   painter.setRenderHint(QPainter::Antialiasing);
   painter.translate(width() / 2, height() / 2);
-  painter.scale(side / 330.0, side / 330.0);
+  painter.scale(side / float(size), side / float(size));
 }
 

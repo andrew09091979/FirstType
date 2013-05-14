@@ -91,6 +91,7 @@ int Protocol10007<ConnectionImpl, DataType>::askForActualValues()
 template <class ConnectionImpl, class DataType>
 int Protocol10007<ConnectionImpl, DataType>::sendCommand(QByteArray & bfr)
 {
+ qDebug() << "Protocol10007::sendCommand";
     return pImpl_->sendCommand(bfr);
 }
 

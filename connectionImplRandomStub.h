@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QDebug>
 #include <QMutex>
+#include <QTimer>
 #include "connectionImpl.h"
 class connectionImplRandomStub : public QObject, public ConnectionImpl
 {
@@ -20,8 +21,9 @@ private:
     QMutex mtx_;
     QMutex mtxInputBuffer_;
     QByteArray InputBfr_;
-//public slots:
-//    void slotReadyRead(){}
+    QTimer timer_;
+public slots:
+    void slotReadyRead();
 
 //    void slotError(QAbstractSocket::SocketError){}
 

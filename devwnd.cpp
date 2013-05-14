@@ -32,7 +32,7 @@ DevWnd::~DevWnd()
 DevWnd& DevWnd::operator <<(std::auto_ptr< std::vector<float> > bfr)
 {
     QWidget *wgt;
-    float fVal = 0.0;
+    float fVal;
     //qDebug() << "DevWnd operator << ";
     if ((gridLayout_)&& bfr.get() != nullptr)
     {
@@ -40,8 +40,10 @@ DevWnd& DevWnd::operator <<(std::auto_ptr< std::vector<float> > bfr)
         {
             if (i<bfr->size())
                 fVal = bfr->at(i);
+
             wgt = gridLayout_->itemAt(i)->widget();
             ChanWidget* lcd = dynamic_cast<ChanWidget*>(wgt);
+
            // qDebug()<<fVal;
             if (lcd != 0)
                lcd->showVal(fVal);

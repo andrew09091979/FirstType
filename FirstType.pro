@@ -18,10 +18,12 @@ SOURCES += main.cpp\
     chanwidget.cpp \
     chanwidgetlcd.cpp \
     chanwidgetled.cpp \
-    connectionImplRandomstub.cpp \
     connectionImplQT.cpp \
     connectionImplBoost.cpp \
-    chanwidgetmanometer.cpp
+    chanwidgetmanometer.cpp \
+    deviceImitator.cpp \
+    deviceImitator10007.cpp \
+    connectionImplRandomStub.cpp
 
 HEADERS  += mainwindow.h \
     devwnd.h \
@@ -45,7 +47,9 @@ HEADERS  += mainwindow.h \
     connectionImpl.h \
     connectionCallback.h \
     chanwidgetmanometer.h \
-    wrapped.h
+    wrapped.h \
+    deviceImitator.h \
+    deviceImitator10007.h
 
 FORMS    += mainwindow.ui
 

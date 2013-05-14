@@ -37,7 +37,7 @@ ConnectionImplQT::RetType ConnectionImplQT::getAnsver(int length)
         size = InputBfr_.size();
         //qDebug()<<"ConnectionImplQT::getAnsver isConnected ok locking...";
         QMutexLocker ml(&mtxInputBuffer_);
-        //qDebug() <<" ConnectionImplQT::getAnsver InputBfr_ = "<< InputBfr_.toHex() << " size = " << size;
+       qDebug() <<" ConnectionImplQT::getAnsver InputBfr_ = "<< InputBfr_.toHex() << " size = " << size;
         bfr = new BufferType;
         res.reset(bfr);
         for(int i = 0; (i<length)&&(i<size);++i)
