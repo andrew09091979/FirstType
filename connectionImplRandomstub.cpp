@@ -33,15 +33,30 @@ connectionImplRandomStub::connectionImplRandomStub(const std::string &ip, unsign
         }
     }
 }
+<<<<<<< HEAD
 connectionImplRandomStub::RetType connectionImplRandomStub::getAnsver(int length)
+=======
+connectionImplRandomStub::connectionImplRandomStub(const std::string &ip, unsigned short port, const ConnectionCallback* c)
+    : ConnectionImpl(ip, port, c)
+{
+
+}
+
+connectionImplRandomStub::RetType connectionImplRandomStub::connectionImplRandomStub::getAnsver(int length)
+>>>>>>> 90b446bd21f7645c423249c07ee2c9e85d114fa5
 {
     qint64 lenCopied = 0;
     int size = 0;
     BufferType * bfr = nullptr;
     std::auto_ptr< BufferType > res(bfr);
     ConnectionImpl::bfr_.clear();
+<<<<<<< HEAD
     if (!isConnected)
         connect_();
+=======
+    for(char i =0; i<16;++i)
+        InputBfr_.push_back(i);
+>>>>>>> 90b446bd21f7645c423249c07ee2c9e85d114fa5
     if (isConnected)
     {
         size = InputBfr_.size();
@@ -57,11 +72,18 @@ connectionImplRandomStub::RetType connectionImplRandomStub::getAnsver(int length
 qDebug() <<" connectionImplRandomStub::getAnsver InputBfr_ = "<< res->toHex() << " size = " << size;
         for(int i = 0; (i<length)&&(i<size);++i)
         {
+
            res->push_back(InputBfr_.at(i));
+           qDebug()<<InputBfr_.at(i)<<' ';
            ++lenCopied;
         }
 
+<<<<<<< HEAD
        // InputBfr_.remove(0, lenCopied);
+=======
+        InputBfr_.remove(0, lenCopied);
+        clb_->ansverReceived(length);
+>>>>>>> 90b446bd21f7645c423249c07ee2c9e85d114fa5
     }
     else
     {
@@ -91,6 +113,11 @@ int connectionImplRandomStub::sendCommand(const QByteArray & data)
 }
 int connectionImplRandomStub::connect_()
 {
+<<<<<<< HEAD
     isConnected = true;
+=======
+    for(char i =0; i<16;++i)
+        InputBfr_.push_back(i);
+>>>>>>> 90b446bd21f7645c423249c07ee2c9e85d114fa5
     return 0;
 }

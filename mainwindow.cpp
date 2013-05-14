@@ -20,6 +20,7 @@ void MainWindow::NewDev()
 //            = new DeviceHolder<Device, Protocol10007, ConnectionImplQT, float>();
       DeviceHolder<Device, Protocol10007, connectionImplRandomStub, float>* dev
               = new DeviceHolder<Device, Protocol10007, connectionImplRandomStub, float>();
-    ui->mdiArea->addSubWindow((*dev)());
+
+      ui->mdiArea->addSubWindow((*dev)());
     dev->show();
 }

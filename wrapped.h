@@ -39,9 +39,11 @@ class WrappedContainer : public Wrapped<Type, ThreadSafety, Ctor_type1, Ctor_typ
 {
     typedef typename ThreadSafety::LockerType Locker;
 public:
-    WrappedContainer():Wrapped(){}
-    WrappedContainer(Type v):Wrapped(v){}
-    WrappedContainer(Ctor_type1 arg1, Ctor_type2 arg2):Wrapped(arg1, arg2){}
+    using Wrapped<Type, ThreadSafety, Ctor_type1, Ctor_type2>::mtx_;
+    using Wrapped<Type, ThreadSafety, Ctor_type1, Ctor_type2>::var;
+    WrappedContainer():Wrapped<Type, ThreadSafety, Ctor_type1, Ctor_type2>(){}
+    WrappedContainer(Type v):Wrapped<Type, ThreadSafety, Ctor_type1, Ctor_type2>(v){}
+    WrappedContainer(Ctor_type1 arg1, Ctor_type2 arg2):Wrapped<Type, ThreadSafety, Ctor_type1, Ctor_type2>(arg1, arg2){}
     void push_back(const Type & v){ThreadSafety ml(&mtx_); var.push_back(v);}
     void push_back (const char * str){ThreadSafety ml(&mtx_); var.push_back(str);}
     void push_back (char ch){ThreadSafety ml(&mtx_); var.push_back(ch);}
