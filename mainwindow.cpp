@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "enteringaddress.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -16,11 +17,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::NewDev()
 {
-//    DeviceHolder<Device, Protocol10007, ConnectionImplQT, float>* dev
-//            = new DeviceHolder<Device, Protocol10007, ConnectionImplQT, float>();
-      DeviceHolder<Device, Protocol10007, connectionImplRandomStub, float>* dev
-              = new DeviceHolder<Device, Protocol10007, connectionImplRandomStub, float>();
+//    EnteringAddress e;
+//    e.show();
+    DeviceHolder<Device, Protocol10007, ConnectionImplQT, float>* dev
+            = new DeviceHolder<Device, Protocol10007, ConnectionImplQT, float>();
+//      DeviceHolder<Device, Protocol10007, connectionImplRandomStub, float>* dev
+//              = new DeviceHolder<Device, Protocol10007, connectionImplRandomStub, float>();
 
-      ui->mdiArea->addSubWindow((*dev)());
+    ui->mdiArea->addSubWindow((*dev)());
     dev->show();
 }

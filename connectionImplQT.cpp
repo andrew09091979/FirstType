@@ -17,6 +17,7 @@ int ConnectionImplQT::connect_()
         qDebug() << "connecting to..." << ConnectionImpl::ip_.c_str() << ":" << ConnectionImpl::port_;
         //sock_.connectToHost(ConnectionImpl::ip_.c_str() , ConnectionImpl::port_);
         sock_.connectToHost("192.168.5.234", 6001);
+        //sock_.connectToHost("127.0.0.1", 6001);
         return 1;
     }
     return 0;

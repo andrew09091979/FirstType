@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     chanwidgetmanometer.cpp \
     deviceImitator.cpp \
     deviceImitator10007.cpp \
-    connectionImplRandomStub.cpp
+    connectionImplRandomStub.cpp \
+    enteringaddress.cpp
 
 HEADERS  += mainwindow.h \
     devwnd.h \
@@ -49,9 +50,11 @@ HEADERS  += mainwindow.h \
     chanwidgetmanometer.h \
     wrapped.h \
     deviceImitator.h \
-    deviceImitator10007.h
+    deviceImitator10007.h \
+    enteringaddress.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    enteringaddress.ui
 
 QMAKE_CXXFLAGS += -std=c++0x
 

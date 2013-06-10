@@ -67,7 +67,7 @@ ConnectionImplBoost::RetType ConnectionImplBoost::getAnsver(int length)
         int low = 0; int high = 100;
         T randomValue = 0;
         QTime time = QTime::currentTime();
-        qsrand((uint)time.msec());;
+        qsrand((uint)time.msec());
         int i =0;
         for( i= 0; i< 50; ++i)
         {
