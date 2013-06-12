@@ -18,13 +18,15 @@
 #include "protocol.h"
 template <
     template <
-            template <class, class> class Proto,
-                                    class Conn,
+            template <class,
+                      class> class Proto,
+                             class Conn,
+                             class Type
+               >                    class Device,
+                   template <class,
+                             class> class Prtcl,
+                                    class ConnectionImpl,
                                     class Type
-               > class Device,
-    template <class, class> class Prtcl,
-    class ConnectionImpl,
-    class Type
 >
 class DeviceHolder : public Syncronizeable, public DeviceCallback<Type>
 {
@@ -45,13 +47,15 @@ private:
 
 template <
     template <
-            template <class, class> class Proto,
-                                    class Conn,
+            template <class,
+                      class> class Proto,
+                             class Conn,
+                             class Type
+               >                    class Device,
+                   template <class,
+                             class> class Prtcl,
+                                    class ConnectionImpl,
                                     class Type
-               > class Device,
-    template <class, class> class Prtcl,
-    class ConnectionImpl,
-    class Type
 >
 DeviceHolder<Device, Prtcl, ConnectionImpl, Type>::DeviceHolder()
 {

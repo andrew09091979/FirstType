@@ -23,7 +23,7 @@ SOURCES += main.cpp\
     chanwidgetmanometer.cpp \
     deviceImitator.cpp \
     deviceImitator10007.cpp \
-    connectionImplRandomStub.cpp
+    connectionImplRandomstub.cpp
 
 HEADERS  += mainwindow.h \
     devwnd.h \
@@ -49,7 +49,7 @@ HEADERS  += mainwindow.h \
     chanwidgetmanometer.h \
     wrapped.h \
     deviceImitator.h \
-    deviceImitator10007.h
+    deviceImitator10007.h \
 
 FORMS    += mainwindow.ui
 
