@@ -8,8 +8,8 @@ QT       += core gui
 
 TARGET = FirstType
 TEMPLATE = app
-INCLUDEPATH += "C:\\Installers\\Loki\\loki-0.1.7\\include\\"
-INCLUDEPATH += "C:\\installers\\boost\\boost_1_51_0\\"
+win32: INCLUDEPATH += "C:\\Installers\\Loki\\loki-0.1.7\\include\\"
+win32: INCLUDEPATH += "C:\\installers\\boost\\boost_1_51_0\\"
 
 SOURCES += main.cpp\
         mainwindow.cpp \
