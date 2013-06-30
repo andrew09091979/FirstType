@@ -8,9 +8,9 @@ QT       += core gui
 
 TARGET = FirstType
 TEMPLATE = app
-INCLUDEPATH += "C:\\Installers\\Loki\\loki-0.1.7\\include\\"
-INCLUDEPATH += "C:\\installers\\boost\\boost_1_51_0\\"
-
+win32: INCLUDEPATH += "C:\\Installers\\Loki\\loki-0.1.7\\include\\"
+win32: INCLUDEPATH += "C:\\installers\\boost\\boost_1_51_0\\"
+unix: INCLUDEPATH += "/home/andrew/Qt5.0.2/5.0.2/gcc/include"
 SOURCES += main.cpp\
         mainwindow.cpp \
     devwnd.cpp \
@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     chanwidgetmanometer.cpp \
     deviceImitator.cpp \
     deviceImitator10007.cpp \
-    connectionImplRandomstub.cpp
+    connectionImplRandomStub.cpp \
+    enteringaddress.cpp
 
 HEADERS  += mainwindow.h \
     devwnd.h \
@@ -50,8 +51,10 @@ HEADERS  += mainwindow.h \
     wrapped.h \
     deviceImitator.h \
     deviceImitator10007.h \
+    enteringaddress.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    enteringaddress.ui
 
 QMAKE_CXXFLAGS += -std=c++0x
 
