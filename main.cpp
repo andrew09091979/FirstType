@@ -1,4 +1,4 @@
-//#include
+#include <QApplication>
 #include <QDebug>
 #include "mainwindow.h"
 #include "iterator"
