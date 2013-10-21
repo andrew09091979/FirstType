@@ -9,6 +9,7 @@
 
 #include "devwnd.h"
 #include "deviceCallback.h"
+#include "devWndCallback.h"
 #include "syncronizer.h"
 #include "syncronizeable.h"
 #include "chanwidgetcreator.h"
@@ -28,13 +29,14 @@ template <
                                     class ConnectionImpl,
                                     class Type
 >
-class DeviceHolder : public Syncronizeable, public DeviceCallback<Type>
+class DeviceHolder : public Syncronizeable, public DeviceCallback<Type>, DeviceWndCallback
 {
 public:
     DeviceHolder();
     QMdiSubWindow* operator()(){return devWnd_;}
     void show(){devWnd_->show();}
     void renewScreen(typename Protocol<Type>::ValuesRetType);
+    void closed();
     ~DeviceHolder();
     virtual void tick();
 
@@ -59,7 +61,7 @@ template <
 >
 DeviceHolder<Device, Prtcl, ConnectionImpl, Type>::DeviceHolder()
 {
-  devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLCD>);
+  devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLCD>,this);
 //devWnd_ = new DevWnd(new ChanWidgetCreator<ChanWidgetLED>);
     syncronizer_ = new Syncronizer(this);
     dev_.reset(new Device<Prtcl, ConnectionImpl, Type>(this));
@@ -108,6 +110,22 @@ void DeviceHolder<Device, Prtcl, ConnectionImpl, Type>::renewScreen(typename Pro
 {
     //qDebug()<< "DeviceHolder::renewScreen";
     *devWnd_ << values;
+}
+
+template <
+    template <
+            template <class, class> class Proto,
+                                    class Conn,
+                                    class Type
+               > class Device,
+    template <class, class> class Prtcl,
+    class ConnectionImpl,
+    class Type
+>
+void DeviceHolder<Device, Prtcl, ConnectionImpl, Type>::closed()
+{
+    qDebug() << "DeviceHolder - window closed////////////////////";
+
 }
 
 #endif // DEVICEHOLDER_H

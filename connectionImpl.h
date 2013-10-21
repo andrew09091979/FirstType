@@ -18,7 +18,7 @@ public:
     //typedef  WrappedContainer<QByteArray, ThreadSafetyStrategy<QMutex, QMutexLocker>, int, char> BufferType;
     typedef std::auto_ptr <BufferType> RetType;
     ConnectionImpl(const std::string & ip, unsigned short port, const ConnectionCallback* c)
-        :ip_(ip), port_(port), clb_(c), bfr_(50,0),isConnected(false){}
+        :ip_(ip), port_(port), clb_(c), bfr_(50,0), isConnected(false){}
     ConnectionImpl(){}
     virtual ~ConnectionImpl(){}
     virtual RetType getAnsver(int length) = 0;

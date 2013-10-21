@@ -25,7 +25,7 @@ public:
     void handle_read(const boost::system::error_code& e);
 private:
     boost::asio::io_service iosrv_;
-    boost::asio::io_service io_service_;
+    QScopedPointer<boost::asio::io_service> io_service_;
     QScopedPointer<tcp::socket> socket_;
     bool bConnected;
 

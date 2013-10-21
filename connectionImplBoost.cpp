@@ -1,22 +1,31 @@
 #include "connectionImplBoost.h"
+void connect_handler(const boost::system::error_code & ec)
+ {
+    qDebug() << "connected";
 
+}
 ConnectionImplBoost::ConnectionImplBoost(const std::string& ip, unsigned short port, const ConnectionCallback *c)
     : ConnectionImpl(ip, port, c), bConnected(false)
 {
-    qDebug()<<"user ctor" << ip.c_str() << ":" << port;
-    socket_.reset(new tcp::socket(io_service_));
+    qDebug()<<"ConnectionImplBoost user ctor" << ip.c_str() << ":" << port;
+    io_service_.reset(new boost::asio::io_service());
+    socket_.reset(new tcp::socket(*io_service_));
 
 }
 
 int ConnectionImplBoost::connect_()
 {
+    qDebug()<<"ConnectionImplBoost::connect_";
     try
     {
-       boost::asio::ip::tcp::endpoint endpoint(
-                   boost::asio::ip::address::from_string(ConnectionImpl::ip_), ConnectionImpl::port_);
-       qDebug()<<"connect_";
+//       boost::asio::ip::tcp::endpoint endpoint(
+//                   boost::asio::ip::address::from_string(ConnectionImpl::ip_), ConnectionImpl::port_);
+        boost::asio::ip::tcp::endpoint endpoint(
+                    boost::asio::ip::address::from_string("81.19.70.1"), 80);
        socket_->async_connect(endpoint, boost::bind(&ConnectionImplBoost::handle_connect,
                                                     this, boost::asio::placeholders::error));
+//        socket_->async_connect(endpoint, boost::bind(connect_handler,_1));
+        io_service_->run();
        return 0;
 
     }
@@ -57,6 +66,7 @@ void ConnectionImplBoost::handle_read(const boost::system::error_code& e)
 
 ConnectionImplBoost::RetType ConnectionImplBoost::getAnsver(int length)
 {
+    qDebug()<<"ConnectionImplBoost::getAnsver";
     BufferType * bfr = nullptr;
     std::auto_ptr< BufferType > res(bfr);
     bfr_.clear();
@@ -85,6 +95,15 @@ ConnectionImplBoost::RetType ConnectionImplBoost::getAnsver(int length)
 
 int ConnectionImplBoost::sendCommand(const QByteArray &)
 {
+    if (bConnected)
+    {
+
+    }
+    else
+    {
+        if (connect_()==0)
+            bConnected = true;
+    }
     return 0;
 }
 

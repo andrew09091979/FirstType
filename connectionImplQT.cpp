@@ -16,8 +16,8 @@ int ConnectionImplQT::connect_()
     {
         qDebug() << "connecting to..." << ConnectionImpl::ip_.c_str() << ":" << ConnectionImpl::port_;
         //sock_.connectToHost(ConnectionImpl::ip_.c_str() , ConnectionImpl::port_);
-        sock_.connectToHost("192.168.5.234", 6001);
-        //sock_.connectToHost("127.0.0.1", 6001);
+        //sock_.connectToHost("192.168.5.234", 6001);
+        sock_.connectToHost("81.19.70.1", 80);
         return 1;
     }
     return 0;
@@ -30,7 +30,7 @@ ConnectionImplQT::RetType ConnectionImplQT::getAnsver(int length)
     BufferType * bfr = nullptr;
     std::auto_ptr< BufferType > res(bfr);
     ConnectionImpl::bfr_.clear();
-//    qDebug()<<"ConnectionImplQT::getAnsver length = " << length;
+    qDebug()<<"ConnectionImplQT::getAnsver length = " << length;
     if (!isConnected)
         connect_();
     if (isConnected)
@@ -58,6 +58,7 @@ ConnectionImplQT::RetType ConnectionImplQT::getAnsver(int length)
 int ConnectionImplQT::sendCommand(const QByteArray & data)
 {
     quint64 res;
+    qDebug()<<"sendCommand";
     if (!isConnected)
     {
         res = -1;

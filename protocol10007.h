@@ -108,10 +108,12 @@ void Protocol10007<ConnectionImpl, DataType>::ansverReceived(qint64 length) cons
     typename ValuesBfrType::value_type val;
     qint8 dummyBytes = 0;
     QByteArray tmpBfr;
+
     tmp = this->getWaitingFor();
-//  qDebug() << "Protocol10007::ansverReceived length = " << length << " waiting for = " << tmp;
+    qDebug() << "Protocol10007::ansverReceived length = " << length << " waiting for = " << tmp;
     bfr += *pImpl_->getAnsver(length).get();
     size = bfr.size();
+      qDebug() << "Protocol10007::ansverReceived size = " << size;
     if (size > 0)
     {
         while(bfr.at(dummyBytes) != '>')//looking for starting byte
@@ -121,7 +123,12 @@ void Protocol10007<ConnectionImpl, DataType>::ansverReceived(qint64 length) cons
             else
                 break;
         }
-
+        QByteArray::Iterator find = std::find(bfr.begin(),bfr.end(),'>');
+        if(find !=bfr.end())
+        {
+            int dummyBytes1 = std::distance(bfr.begin(), find);
+            dummyBytes1++;
+        }
         if (dummyBytes>0)
             bfr.remove(0,dummyBytes);
 
@@ -132,7 +139,7 @@ void Protocol10007<ConnectionImpl, DataType>::ansverReceived(qint64 length) cons
             dataSize = getDataSize(bfr);
 //          qDebug() << "Protocol10007::ansverReceived addr = " << addr << " size = " << size << "dataSize = "<< dataSize;
             length -= dummyBytes;
-//          qDebug() << "Protocol10007::ansverReceived bfr = " << bfr.toHex();
+ //         qDebug() << "Protocol10007::ansverReceived bfr = " << bfr.toHex();
             if (tmp - length > 0)
                 setWaitingFor(tmp - length);
             else

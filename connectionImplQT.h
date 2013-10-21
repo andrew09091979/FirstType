@@ -17,7 +17,7 @@ public:
     typedef ConnectionImpl::BufferType BufferType;
     typedef ConnectionImpl::RetType RetType;
     ConnectionImplQT(const std::string &ip, unsigned short port, const ConnectionCallback* c);
-    ConnectionImplQT(){qDebug()<<"default ctor";}
+    ConnectionImplQT(){ qDebug() << "default ctor"; }
     virtual ~ConnectionImplQT(){}
     virtual RetType getAnsver(int length);
     virtual int sendCommand(const QByteArray &);

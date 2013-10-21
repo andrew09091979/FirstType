@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = FirstType
 TEMPLATE = app
 win32: INCLUDEPATH += "C:\\Installers\\Loki\\loki-0.1.7\\include\\"

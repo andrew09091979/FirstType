@@ -21,6 +21,15 @@ public:
     ~MainWindow();
 public slots:
     void NewDev();
+
+    void on_DeviceWindowClosed(QObject *obj = 0);
+    void on_DevWndStateChanged(Qt::WindowStates oldState, Qt::WindowStates newState);
+private slots:
+    void on_mdiArea_destroyed();
+
+    void on_mdiArea_destroyed(QObject *arg1);
+
+    void on_mdiArea_subWindowActivated(QMdiSubWindow *arg1);
 private:
     Ui::MainWindow *ui;
 };

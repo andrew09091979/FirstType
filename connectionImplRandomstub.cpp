@@ -44,35 +44,38 @@ connectionImplRandomStub::RetType connectionImplRandomStub::getAnsver(int length
     qDebug() << "connectionImplRandomStub::getAnsver";
     std::auto_ptr< BufferType > res(bfr);
     ConnectionImpl::bfr_.clear();
-
     if (!isConnected)
         connect_();
     if (isConnected)
     {
         size = InputBfr_.size();
+    qDebug() << "connectionImplRandomStub::getAnsver trying to seize mutex";
         QMutexLocker ml(&mtxInputBuffer_);
         bfr = new BufferType;
         res.reset(bfr);
+        res->push_back('\x05');res->push_back('\x05');//dummy bytes
         res->push_back('>');
         res->push_back('0'); res->push_back('1');
         res->push_back('\x20'); res->push_back('\x08');res->push_back('\x00'); res->push_back('\x00');
         res->push_back('\x68');
 //        res->append(InputBfr_);
-qDebug() <<" connectionImplRandomStub::getAnsver InputBfr_ = "<< res->toHex() << " size = " << size;
+qDebug() <<" connectionImplRandomStub::getAnsver InputBfr_ = "<< res->toHex() << " size = " << size << " length = " << length;
         for(int i = 0; (i<length)&&(i<size);++i)
         {
 
            res->push_back(InputBfr_.at(i));
-           qDebug()<<InputBfr_.at(i)<<' ';
+           //qDebug()<<InputBfr_.at(i)<<' ';
            ++lenCopied;
         }
 
        // InputBfr_.remove(0, lenCopied);
-        clb_->ansverReceived(length);
+       // clb_->ansverReceived(length);
+
     }
     else
     {
     }
+    qDebug() <<" connectionImplRandomStub::getAnsver return";
     return res;
 }
 void connectionImplRandomStub::slotReadyRead()
@@ -99,6 +102,7 @@ int connectionImplRandomStub::sendCommand(const QByteArray & data)
 int connectionImplRandomStub::connect_()
 {
     isConnected = true;
+    qDebug() << "connectionImplRandomStub::connect_";
     for(char i =0; i<16;++i)
         InputBfr_.push_back(i);
     return 0;

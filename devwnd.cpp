@@ -1,7 +1,7 @@
 #include "devwnd.h"
 
-DevWnd::DevWnd( WidgetCreator* c, QWidget *parent) :
-    QMdiSubWindow(parent), chanWidgetCreator_(c)
+DevWnd::DevWnd( WidgetCreator* c, DeviceWndCallback *dwc, QWidget *parent) :
+    QMdiSubWindow(parent), chanWidgetCreator_(c),devWndClb_(dwc)
 {
     this->setBaseSize(100,100);
     gridLayout_ = new QGridLayout;
@@ -17,6 +17,7 @@ DevWnd::DevWnd( WidgetCreator* c, QWidget *parent) :
         }
     wgtDev->setLayout(gridLayout_);
     this->setWidget(wgtDev);
+
 }
 
 const QBuffer &DevWnd::out()
@@ -26,9 +27,13 @@ const QBuffer &DevWnd::out()
 
 DevWnd::~DevWnd()
 {
-
+   // qDebug() << "DevWnd dtor//////////////////////////////////";
 }
-
+void DevWnd::closeEvent(QCloseEvent *event)
+{
+    this->devWndClb_->closed();//оповещаем DeviceHolder о том, что пользователь закрыл окно
+    qDebug() << "closeEvent///////////////////////////////////";
+}
 DevWnd& DevWnd::operator <<(std::auto_ptr< std::vector<float> > bfr)
 {
     QWidget *wgt;
@@ -43,7 +48,6 @@ DevWnd& DevWnd::operator <<(std::auto_ptr< std::vector<float> > bfr)
 
             wgt = gridLayout_->itemAt(i)->widget();
             ChanWidget* lcd = dynamic_cast<ChanWidget*>(wgt);
-
            // qDebug()<<fVal;
             if (lcd != 0)
                lcd->showVal(fVal);
